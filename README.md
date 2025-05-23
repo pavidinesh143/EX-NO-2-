@@ -1,9 +1,10 @@
 ## EX. NO:2 IMPLEMENTATION OF PLAYFAIR CIPHER
-
+PAVITHRA S
+212223220072
  
 
 ## AIM:
- 
+
 
  
 
@@ -30,14 +31,49 @@ STEP-2: Read the keyword from the user.
 STEP-3: Arrange the keyword without duplicates in a 5*5 matrix in the row order and fill the remaining cells with missed out letters in alphabetical order. Note that ‘i’ and ‘j’ takes the same cell.
 STEP-4: Group the plain text in pairs and match the corresponding corner letters by forming a rectangular grid.
 STEP-5: Display the obtained cipher text.
-
-
-
-
 Program:
-
-
-
-
-
+#include<stdio.h>
+#include<string.h>
+int main()
+{
+    unsigned int a[3][3]={{6,24,1},{13,16,10},{20,17,15}};
+    unsigned int b[3][3]={{8,5,10},{21,8,21},{21,12,8}};
+    int i,j, t=0;
+    unsigned int c[20],d[20];
+    char msg[20];
+    printf("Enter plain text:");
+    scanf("%s",msg);
+    for(i=0;i<strlen(msg);i++)
+    {
+        c[i]=msg[i]-65;
+        printf("%d ",c[i]);
+    }
+    for(i=0;i<3;i++)
+    {
+        t=0;
+        for(j=0;j<3;j++)
+        {
+            t=t+(a[i][j]*c[j]);
+        }
+        d[i]=t%26;
+    }
+    printf("\nEncrypted Cipher Text :");
+    for(i=0;i<3;i++)
+    printf(" %c",d[i]+65);
+    for(i=0;i<3;i++)
+    {
+        t=0;
+        for(j=0;j<3;j++)
+        {
+            t=t+(b[i][j]*d[j]);
+        }
+        c[i]=t%26;
+    }
+    printf("\nDecrypted Cipher Text :");
+    for(i=0;i<3;i++)
+    printf(" %c",c[i]+65);
+    return 0;
+}
 Output:
+![446390327-55357adc-accc-478b-b760-be84bc055271](https://github.com/user-attachments/assets/390b1a2a-45fa-4781-bc14-4570b84c8d8e)
+Result : This program encrypts and decrypts a 3-letter plaintext using the Hill Cipher with a 3×3 key matrix and its inverse.
